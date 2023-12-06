@@ -24,11 +24,51 @@ const Header = () => {
   );
 };
 
+const RestaurantCard = () => {
+  return (
+    <div className="res-card">
+      <img
+        className="res-img"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAHUiaNPEkExCjcaMqetiz3Ii6_v8SULrwOg&usqp=CAU"
+      />
+      <h3>Baba Au Rhum</h3>
+      <h4>Burger&fries</h4>
+      <h4>4.5stars</h4>
+      <h4>38min</h4>
+    </div>
+  );
+};
+
+const Body = () => {
+  return (
+    <div className="body">
+      <div className="search">Search</div>
+      <div className="res-container">
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+        <RestaurantCard />
+      </div>
+    </div>
+  );
+};
+
 const AppLayout = () => {
   return (
     <div className="app">
       <Header />
-      {/* <Body /> */}
+      <Body />
     </div>
   );
 };
