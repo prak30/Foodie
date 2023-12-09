@@ -42,3 +42,13 @@
   margin: 10px;
   cursor: pointer;
 }
+.shimcontainer{
+  display: flex;
+  flex-wrap: wrap;
+}
+.shimelement{
+  margin: 10px;
+  width: 235px;
+  height: 420px;
+  background-color: #f0f0f0;
+}
