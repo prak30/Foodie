@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
+
 const Header = () => {
   const [loginbtn, setLoginBtn] = useState("Login");
+  const status = useOnlineStatus();
+
   console.log("header rendered");
   return (
     <div className="top-header">
@@ -31,6 +35,7 @@ const Header = () => {
           >
             {loginbtn}
           </button>
+          <li>{status ? "🟢" : "🔴"}</li>
         </ul>
       </div>
     </div>
