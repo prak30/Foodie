@@ -17,11 +17,7 @@ const Body = () => {
     const response = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=15.2832187&lng=73.98619099999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
-    // console.log(response);
     const data = await response.json();
-    console.log("inside fetchdata");
-
-    console.log(data);
     setListOfRestaurants(
       data.data.cards[2].card.card.gridElements.infoWithStyle.restaurants
     );
@@ -39,17 +35,18 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
-        <div className="search">
+      <div className="filter flex">
+        <div className="search m-4 p-4">
           <input
             type="text"
-            className="searchbox"
+            className="border border-solid border-black"
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
             }}
           />
           <button
+            className="px-4 py-2 bg-green-100 m-4 rounded-lg"
             onClick={() => {
               const filteredRestaurants = listOfRestaurants.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -61,21 +58,26 @@ const Body = () => {
             Search
           </button>
         </div>
-        <button
-          className="toprated"
-          onClick={() => {
-            const filteredList = listOfRestaurants.filter(
-              (res) => res.info.avgRating > 4
-            );
-            setListOfRestaurants(filteredList);
-          }}
-        >
-          Top Rated
-        </button>
+        <div className="search m-4 p-4 flex items-center">
+          <button
+            className="toprated px-4 py-2 bg-gray-200 rounded-lg"
+            onClick={() => {
+              console.log("top");
+              const filteredList = listOfRestaurants.filter(
+                (res) => res.info.avgRating > 4.2
+              );
+              console.log(filteredList);
+              setListOfRestaurants(filteredList);
+            }}
+          >
+            Top Rated
+          </button>
+        </div>
       </div>
-      <div className="res-container">
-        {console.log(listOfRestaurants)}
-        {filteredList.map((restaurant) => (
+      <div className="res-container flex flex-wrap">
+        {console.log("main", listOfRestaurants)}
+        {console.log("filtered", filteredList)}
+        {listOfRestaurants.map((restaurant) => (
           <Link
             key={restaurant.info.id}
             to={"/restaurant/" + restaurant.info.id}

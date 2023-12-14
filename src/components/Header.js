@@ -9,24 +9,23 @@ const Header = () => {
 
   console.log("header rendered");
   return (
-    <div className="top-header">
+    <div className="flex justify-between bg-pink-100 shadow-lg sm:bg-yellow-50 lg:bg-green-50 ">
       <div className="logo">
         <img src={LOGO_URL} width="100" height="auto" alt="logo" />
       </div>
-      <div className="nav-items">
-        <ul>
-          <li>
+      <div className="flex items-center">
+        <ul className="flex">
+          <li className="px-4">
             <Link to="/">Home</Link>
           </li>
-          <li>
+          <li className="px-4">
             <Link to="/about">About Us</Link>
           </li>
-          <li>
+          <li className="px-4">
             <Link to="/contact">Contact</Link>
           </li>
-          <li>Cart</li>
+          <li className="px-4">Cart</li>
           <button
-            className="loginbtn"
             onClick={() => {
               loginbtn === "Login"
                 ? setLoginBtn("Logout")
@@ -35,7 +34,7 @@ const Header = () => {
           >
             {loginbtn}
           </button>
-          <li>{status ? "🟢" : "🔴"}</li>
+          <li className="px-4">{status ? "🟢" : "🔴"}</li>
         </ul>
       </div>
     </div>
