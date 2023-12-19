@@ -19,6 +19,11 @@ const ItemCard = ({ data }) => {
             </div>
           </div>
           <div className="w-3/12 p-4">
+            <div className="absolute">
+              <button className="p-2 rounded-lg bg-black text-white shadow-lg">
+                Add+
+              </button>
+            </div>
             <img
               src={
                 "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
