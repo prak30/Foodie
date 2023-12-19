@@ -7,23 +7,22 @@ import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 const RestaurantMenu = () => {
   const { id } = useParams();
-  const restItem = useRestaurantMenu(id);
+  const resInfo = useRestaurantMenu(id);
 
-  // const { name, cloudinaryImageId, cuisines, costForTwoMessage, avgRating } =
-  //   restItem.cards[0].card.card.info;
+  // Check if cards array exists and has at least 3 elements
+  if (!resInfo || !resInfo.cards || resInfo.cards.length < 3) {
+    return <Shimmer />;
+  }
 
-  return restItem.length === 0 ? (
-    <Shimmer />
-  ) : (
-    <div className="rest-div">
-      <h1>{restItem.cards[0].card.card.info.name}</h1>
-      <img
-        style={{ width: "300px", height: "200px" }}
-        src={CDN_URL + restItem.cards[0].card.card.info.cloudinaryImageId}
-      />
-      <h2>{restItem.cards[0].card.card.info.cuisines.join(",")}</h2>
-      <h3>{restItem.cards[0].card.card.info.costForTwoMessage}</h3>
-      <h3>Rating: {restItem.cards[0].card.card.info.avgRating}</h3>
+  const { name, cuisines, costForTwoMessage } =
+    resInfo?.cards[0]?.card?.card?.info;
+
+  return (
+    <div className="text-center">
+      <h1 className="font-bold text-2xl my-5">{name}</h1>
+      <p className="font-bold text-lg">
+        {cuisines.join(",") + "-" + costForTwoMessage}
+      </p>
     </div>
   );
 };

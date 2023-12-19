@@ -8,6 +8,8 @@ const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
 
+  console.log(listOfRestaurants);
+
   const [searchText, setSearchText] = useState([]);
   useEffect(() => {
     fetchData();
@@ -15,14 +17,14 @@ const Body = () => {
 
   const fetchData = async () => {
     const response = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=15.2832187&lng=73.98619099999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
     );
     const data = await response.json();
     setListOfRestaurants(
-      data.data.cards[2].card.card.gridElements.infoWithStyle.restaurants
+      data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
     setFilteredList(
-      data.data.cards[2].card.card.gridElements.infoWithStyle.restaurants
+      data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
 
@@ -75,8 +77,6 @@ const Body = () => {
         </div>
       </div>
       <div className="res-container flex flex-wrap">
-        {console.log("main", listOfRestaurants)}
-        {console.log("filtered", filteredList)}
         {listOfRestaurants.map((restaurant) => (
           <Link
             key={restaurant.info.id}
