@@ -8,7 +8,7 @@ const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
 
-  console.log(listOfRestaurants);
+  console.log(filteredList);
 
   const [searchText, setSearchText] = useState([]);
   useEffect(() => {
@@ -77,7 +77,7 @@ const Body = () => {
         </div>
       </div>
       <div className="res-container flex flex-wrap">
-        {listOfRestaurants.map((restaurant) => (
+        {filteredList.map((restaurant) => (
           <Link
             key={restaurant.info.id}
             to={"/restaurant/" + restaurant.info.id}
