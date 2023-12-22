@@ -14,7 +14,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="text-center">
+    <div className="text-center w-6/12 m-auto">
       <h1 className="text-bold text-2xl p-5">Cart</h1>
       <button
         className="p-2 m-2 bg-black text-white rounded-lg"
@@ -26,11 +26,7 @@ const Cart = () => {
         <h1>Your cart is empty add items to your cart</h1>
       )}
       <div>
-        <ItemCard
-          className="w-6/12 m-auto"
-          data={cartItems}
-          showButton={false}
-        />
+        <ItemCard data={cartItems} showButton={false} />
       </div>
     </div>
   );

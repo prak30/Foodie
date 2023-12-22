@@ -19,7 +19,12 @@ const ItemCard = ({ data, showButton = true }) => {
           <div className="w-9/12">
             <div className="py-2">
               <span className="font-bold">{item.card.info.name}</span>
-              <span className="font-bold">- ₹{item.card.info.costFortwo}</span>
+              <span className="font-bold">
+                - ₹
+                {item.card.info.price
+                  ? item.card.info.price / 100
+                  : item.card.info.defaultPrice / 100}
+              </span>
             </div>
             <div>
               <p>{item.card.info.description}</p>
