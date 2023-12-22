@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { addItem } from "../utils/cartSlice";
 
-const ItemCard = ({ data }) => {
+const ItemCard = ({ data, showButton = true }) => {
   const dispatch = useDispatch();
 
   const handleAddItem = (item) => {
@@ -19,21 +19,23 @@ const ItemCard = ({ data }) => {
           <div className="w-9/12">
             <div className="py-2">
               <span className="font-bold">{item.card.info.name}</span>
-              <span className="font-bold">- ₹{item.card.info.price}</span>
+              <span className="font-bold">- ₹{item.card.info.costFortwo}</span>
             </div>
             <div>
               <p>{item.card.info.description}</p>
             </div>
           </div>
           <div className="w-3/12 p-4">
-            <div className="absolute">
-              <button
-                className="p-2 rounded-lg bg-black text-white shadow-lg "
-                onClick={() => handleAddItem(item)}
-              >
-                Add+
-              </button>
-            </div>
+            {showButton && (
+              <div className="absolute">
+                <button
+                  className="p-2 rounded-lg bg-black text-white shadow-lg "
+                  onClick={() => handleAddItem(item)}
+                >
+                  Add+
+                </button>
+              </div>
+            )}
             <img
               src={
                 "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +

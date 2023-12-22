@@ -4,7 +4,7 @@ import ItemCard from "./ItemCard";
 import { useDispatch } from "react-redux";
 import { clearCart } from "../utils/cartSlice";
 
-// A dd feature to remove add button
+// Add feature to remove add button
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
   const dispatch = useDispatch();
@@ -26,7 +26,11 @@ const Cart = () => {
         <h1>Your cart is empty add items to your cart</h1>
       )}
       <div>
-        <ItemCard data={cartItems} />
+        <ItemCard
+          className="w-6/12 m-auto"
+          data={cartItems}
+          showButton={false}
+        />
       </div>
     </div>
   );
