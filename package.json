@@ -1,7 +1,7 @@
 {
-  "name": "namaste-react",
+  "name": "Foodie",
   "version": "1.0.0",
-  "description": "Namaste React",
+  "description": "Food ordering app",
   "main": "index.js",
   "scripts": {
     "start": "parcel index.html",

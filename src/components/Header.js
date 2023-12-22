@@ -2,10 +2,13 @@ import { useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [loginbtn, setLoginBtn] = useState("Login");
   const status = useOnlineStatus();
+  //subscribing to cart using a selector
+  const cartItems = useSelector((store) => store.cart.items);
 
   console.log("header rendered");
   return (
@@ -24,7 +27,7 @@ const Header = () => {
           <li className="px-4">
             <Link to="/contact">Contact</Link>
           </li>
-          <li className="px-4">Cart</li>
+          <li className="px-4 font-bold">🛒-{cartItems.length}</li>
           <button
             onClick={() => {
               loginbtn === "Login"
