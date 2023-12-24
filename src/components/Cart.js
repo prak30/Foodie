@@ -2,12 +2,19 @@ import React from "react";
 import { useSelector } from "react-redux";
 import ItemCard from "./ItemCard";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { clearCart } from "../utils/cartSlice";
 
 // Add feature to remove add button
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
   const dispatch = useDispatch();
+  const history = useNavigate();
+
+  const handleCheckoutClick = () => {
+    // Redirect to the checkout component when the button is clicked
+    history("/checkout"); // Replace '/checkout' with the actual path of your checkout component
+  };
 
   const handleClearCart = () => {
     dispatch(clearCart());
@@ -27,6 +34,18 @@ const Cart = () => {
       )}
       <div>
         <ItemCard data={cartItems} showButton={false} />
+      </div>
+      <div>
+        Total -
+        {cartItems.reduce((acc, item) => acc + item.card.info.price / 100, 0)}
+      </div>
+      <div>
+        <button
+          className="p-2 m-2 bg-black text-white rounded-lg"
+          onClick={handleCheckoutClick}
+        >
+          Checkout
+        </button>
       </div>
     </div>
   );
