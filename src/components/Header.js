@@ -14,7 +14,13 @@ const Header = () => {
   return (
     <div className="flex justify-between bg-pink-100 shadow-lg sm:bg-yellow-50 lg:bg-green-50 ">
       <div className="logo">
-        <img src={LOGO_URL} width="100" height="auto" alt="logo" />
+        <img
+          src={LOGO_URL}
+          width="100"
+          height="auto"
+          alt="logo"
+          onClick={() => window.location.reload()}
+        />
       </div>
       <div className="flex items-center">
         <ul className="flex">
