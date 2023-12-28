@@ -4,21 +4,20 @@ import Shimmer from "./Shimmer";
 import { ALL_RESTAURANTS_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
-
-  console.log(filteredList);
-
   const [searchText, setSearchText] = useState([]);
+  const onlineStatus = useOnlineStatus();
+
   useEffect(() => {
     fetchData();
+    console.log("initial render", +listOfRestaurants.length);
   }, []);
 
   const fetchData = async () => {
-    const response = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
-    );
+    const response = await fetch(ALL_RESTAURANTS_URL);
     const data = await response.json();
     setListOfRestaurants(
       data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
@@ -28,8 +27,7 @@ const Body = () => {
     );
   };
 
-  const onlineStatus = useOnlineStatus();
-  if (onlineStatus == false) {
+  if (!onlineStatus) {
     return <h1>You seem to be offline. Check your internet connection</h1>;
   }
 
@@ -37,11 +35,11 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter flex">
+      <div className="filter flex flex-col sm:flex-row">
         <div className="search m-4 p-4">
           <input
             type="text"
-            className="border border-solid border-black"
+            className="border border-solid border-black p-2"
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
@@ -60,7 +58,7 @@ const Body = () => {
             Search
           </button>
         </div>
-        <div className="search m-4 p-4 flex items-center">
+        <div className="search m-4 p-4">
           <button
             className="toprated px-4 py-2 bg-gray-200 rounded-lg"
             onClick={() => {
@@ -69,7 +67,7 @@ const Body = () => {
                 (res) => res.info.avgRating > 4.2
               );
               console.log(filteredList);
-              setListOfRestaurants(filteredList);
+              setFilteredList(filteredList);
             }}
           >
             Top Rated
